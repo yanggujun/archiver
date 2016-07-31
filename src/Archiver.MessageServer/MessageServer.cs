@@ -1,7 +1,9 @@
 
 using System;
 using System.IO;
+using System.Threading.Tasks;
 using Archiver.Common;
+using Commons.Messaging;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -15,6 +17,7 @@ namespace Archiver.MessageServer
         {
             loggerFactory.AddConsole(LogLevel.Trace);
             var logger = loggerFactory.CreateLogger("Default");
+            var inbound = PipelineBuilder.Build();
 
             app.Run(async context =>
             {
@@ -23,10 +26,9 @@ namespace Archiver.MessageServer
                     + $"{Environment.NewLine}"
                     + $"Sock: {connectionFeature.LocalIpAddress?.ToString()}:{connectionFeature.LocalPort}");
 
-                var response = "Ack";
-                context.Response.ContentLength = response.Length;
-                context.Response.ContentType = "text/plain";
-                await context.Response.WriteAsync(response);
+
+                inbound.Accept(context);
+                await Task.Run(() => Console.WriteLine("Request is sent to pipeline."));
             });
         }
 

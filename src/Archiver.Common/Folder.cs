@@ -1,4 +1,5 @@
-﻿namespace Archiver.Common
+﻿
+namespace Archiver.Common
 {
     public class Folder
     {

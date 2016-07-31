@@ -4,10 +4,7 @@
   "buildOptions": { "emitEntryPoint": true },
 
   "dependencies": {
-    "Microsoft.NETCore.App": {
-      "version": "1.0.0",
-      "type": "platform"
-    },
+    "Microsoft.NETCore.App": "1.0.0",
     "Microsoft.AspNetCore.Server.Kestrel": "1.0.0",
     "Microsoft.Extensions.Logging.Console": "1.0.0"
   },
@@ -19,8 +16,28 @@
         "Archiver.Common": {
           "type": "build",
           "target": "project"
+        },
+        "Commons.Utils": {
+          "type": "build",
+          "target": "project"
+        },
+        "Commons.Collections": {
+          "type": "build",
+          "target": "project"
+        },
+        "Commons.Json": {
+          "type": "build",
+          "target": "project"
+        },
+        "Commons.Messaging": {
+          "type": "build",
+          "target": "project"
         }
       }
     }
+  },
+  "runtimes": {
+    "win10-x64": "",
+    "ubuntu.14.04-x64": ""
   }
 }

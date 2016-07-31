@@ -9,18 +9,6 @@
     "netstandard1.3": {
       "imports": "dnxcore50",
       "dependencies": {
-        "Commons.Utils": {
-          "type": "build",
-          "target": "project"
-        },
-        "Commons.Collections": {
-          "type": "build",
-          "target": "project"
-        },
-        "Commons.Json": {
-          "type": "build",
-          "target": "project"
-        }
       }
     }
   }
