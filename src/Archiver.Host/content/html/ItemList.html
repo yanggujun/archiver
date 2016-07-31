@@ -1,0 +1,12 @@
+﻿<div class="row">
+    <div class="col-md-5">
+    </div>
+    <div class="col-md-10">
+        <div class="list-group" ng-controller="ItemController">
+            <a class="list-group-item" href="#/"><span class="glyphicon glyphicon-home"></span>    Home</a>
+            <a class="list-group-item" ng-repeat="item in Items" href="#/item/{{item.Id}}">
+                <span class="glyphicon glyphicon-folder-close"></span>    {{item.Name}}
+            </a>
+        </div>
+    </div>
+</div>
