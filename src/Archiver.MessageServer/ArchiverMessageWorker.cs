@@ -12,7 +12,7 @@ namespace Archiver.MessageServer
         public string Do(ArchiverMsg message)
         {
             Console.WriteLine("Hello, I am running");
-            return "null";
+            return "{\"content\":\"I am running\"}";
         }
     }
 }

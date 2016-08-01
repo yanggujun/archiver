@@ -10,19 +10,37 @@
       "type": "build",
       "version": ""
     },
-    "Microsoft.NETCore.App": {
-      "type": "platform",
-      "version": "1.0.0"
-    },
+    "Microsoft.NETCore.App": "1.0.0",
     "Microsoft.AspNetCore.Mvc": "1.0.0",
     "Microsoft.AspNetCore.Server.Kestrel": "1.0.0",
     "Microsoft.AspNetCore.StaticFiles": "1.0.0",
-    "Microsoft.Extensions.Logging.Console": "1.0.0"
+    "Microsoft.Extensions.Logging.Console": "1.0.0",
+    "Commons.Utils": {
+      "target": "project",
+      "type": "build"
+    },
+    "Commons.Collections": {
+      "target": "project",
+      "type": "build"
+    },
+    "Commons.Json": {
+      "target": "project",
+      "type": "build"
+    },
+    "Commons.Messaging": {
+      "target": "project",
+      "type": "build"
+    }
   },
 
   "frameworks": {
     "netcoreapp1.0": {
       "imports": "dnxcore50"
     }
+  },
+  "runtimes": {
+    "win10-x64": "",
+    "ubuntu.14.04-x64": "",
+    "win81-x64": ""
   }
 }
