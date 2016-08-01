@@ -16,15 +16,15 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Archiver.MessageServer", "s
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Archiver.Common", "src\Archiver.Common\Archiver.Common.xproj", "{B0B4F239-96BB-4382-866E-0CBA4445643B}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Commons.Utils", "src\.dep\commonsfornet\src\Commons.Utils\Commons.Utils.xproj", "{C7B457DE-7EB4-4A66-A83E-4F54AAAA5171}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Commons.Utils", "src\.dep\commons\src\Commons.Utils\Commons.Utils.xproj", "{C7B457DE-7EB4-4A66-A83E-4F54AAAA5171}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dep", "dep", "{5AACF75B-938A-409C-B518-47AF13DC4074}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Commons.Collections", "src\.dep\commonsfornet\src\Commons.Collections\Commons.Collections.xproj", "{398FE66A-B4C0-483D-8936-16CCC9DE7DC6}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Commons.Collections", "src\.dep\commons\src\Commons.Collections\Commons.Collections.xproj", "{398FE66A-B4C0-483D-8936-16CCC9DE7DC6}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Commons.Json", "src\.dep\commonsfornet\src\Commons.Json\Commons.Json.xproj", "{5694F316-9855-4C6B-8B5A-F49470944D38}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Commons.Json", "src\.dep\commons\src\Commons.Json\Commons.Json.xproj", "{5694F316-9855-4C6B-8B5A-F49470944D38}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Commons.Messaging", "src\.dep\commonsfornet\src\Commons.Messaging\Commons.Messaging.xproj", "{189766F1-AACA-4E21-8F45-3BF17F74EA87}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Commons.Messaging", "src\.dep\commons\src\Commons.Messaging\Commons.Messaging.xproj", "{189766F1-AACA-4E21-8F45-3BF17F74EA87}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

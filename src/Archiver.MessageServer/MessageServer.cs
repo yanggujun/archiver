@@ -27,8 +27,7 @@ namespace Archiver.MessageServer
                     + $"Sock: {connectionFeature.LocalIpAddress?.ToString()}:{connectionFeature.LocalPort}");
 
 
-                inbound.Accept(context);
-                await Task.Run(() => Console.WriteLine("Request is sent to pipeline."));
+                await Task.Run(() => inbound.Accept(context));
             });
         }
 

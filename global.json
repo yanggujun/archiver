@@ -1,5 +1,5 @@
 ﻿{
-  "projects": [ "src", "test", "src/.dep/commonsfornet/src" ],
+  "projects": [ "src", "test", "src/.dep/commons/src" ],
   "sdk": {
     "version": "1.0.0-preview2-003121"
   }
