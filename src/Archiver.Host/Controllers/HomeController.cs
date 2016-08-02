@@ -14,7 +14,7 @@ namespace Archiver.Host.Controllers
         }
         public void Index()
         {
-            var result = target.Send(new Folder { Id = 1, Name = "I am a folder" });
+            var result = target.Send(new CategoryListReqMsg());
             Console.WriteLine(result);
         }
     }

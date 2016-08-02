@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Archiver.Common;
 using Commons.Messaging;
+using Commons.Messaging.Cache;
 using Microsoft.AspNetCore.Http;
 
 namespace Archiver.MessageServer
@@ -17,8 +18,11 @@ namespace Archiver.MessageServer
             var worker = new ArchiverMessageWorker();
             var outbound = new OutboundController(contextCache);
             var dispatcher = new QueueDispatcher(worker, outbound);
+            var assemblyCache = new AssemblyCache();
+            var typeCache = new TypeCache();
+            var typeLoader = new TypeLoader(assemblyCache, typeCache);
             router.AddTarget(typeof(ArchiverMsg), dispatcher);
-            var inbound = new InboundController(router, contextCache);
+            var inbound = new InboundController(router, contextCache, typeLoader);
             return inbound;
         }
     }
