@@ -17,7 +17,7 @@ namespace Archiver.MessageServer
             var router = new TypedMessageRouter();
             var worker = new ArchiverMessageWorker();
             var outbound = new OutboundController(contextCache);
-            var dispatcher = new QueueDispatcher(worker, outbound);
+            var dispatcher = new SimpleDispatcher(worker);
             var assemblyCache = new AssemblyCache();
             var typeCache = new TypeCache();
             var typeLoader = new TypeLoader(assemblyCache, typeCache);
