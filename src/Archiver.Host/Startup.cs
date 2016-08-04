@@ -19,7 +19,7 @@ namespace Archiver.Host
             {
                 routes.MapRoute(
                     name: "default", 
-                    template: "{controller=home}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
 

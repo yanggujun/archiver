@@ -12,10 +12,10 @@ namespace Archiver.Host.Controllers
         {
             target = new MessageTarget(Constants.ServerUri);
         }
-        public void Index()
+
+        public IActionResult Index()
         {
-            var result = target.Send(new CategoryListReqMsg());
-            Console.WriteLine(result);
+            return View("Index");
         }
     }
 }

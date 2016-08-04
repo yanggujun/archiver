@@ -22,7 +22,7 @@ namespace Archiver.MessageServer
             var typeCache = new TypeCache();
             var typeLoader = new TypeLoader(assemblyCache, typeCache);
             router.AddTarget(typeof(ArchiverMsg), dispatcher);
-            var inbound = new InboundController(router, contextCache, typeLoader);
+            var inbound = new InboundController(router, typeLoader);
             return inbound;
         }
     }
