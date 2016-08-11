@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Reflection;
 using Archiver.Common;
+using Commons.Collections.Map;
+using Commons.Collections.Sequence;
 using Commons.Messaging;
 using Commons.Messaging.Cache;
 using Microsoft.AspNetCore.Http;
@@ -13,16 +13,25 @@ namespace Archiver.MessageServer
     {
         public static IMessageController<HttpContext> Build()
         {
-            var contextCache = new ContextCache();
+            var cacheFactory = new CacheFactory();
+            var cacheManager = new CacheManager(cacheFactory);
+            var catCache = cacheManager.NewCache<string, string>("category");
+            var contextCache = cacheManager.NewCache<long, HttpContext>("context");
+            var typeCache = cacheManager.NewCache<string, Type>("type");
+
+            var contextSeq = new AtomicSequence();
+
+            var categorySeq = new SimpleSequence();
+
             var router = new TypedMessageRouter();
-            var worker = new ArchiverMessageWorker();
+
+            router.AddTarget(typeof(CategoryListReqMsg), new SimpleDispatcher(new CategoryListWorker(catCache)));
+            router.AddTarget(typeof(CategoryReqMsg), new SimpleDispatcher(new CategoryWorker(catCache, categorySeq)));
+
             var outbound = new OutboundController(contextCache);
-            var dispatcher = new SimpleDispatcher(worker);
-            var assemblyCache = new AssemblyCache();
-            var typeCache = new TypeCache();
+            var assemblyCache = cacheManager.NewCache<string, Assembly>("asssembly");
             var typeLoader = new TypeLoader(assemblyCache, typeCache);
-            router.AddTarget(typeof(ArchiverMsg), dispatcher);
-            var inbound = new InboundController(router, typeLoader);
+            var inbound = new InboundController(router, typeLoader, contextSeq);
             return inbound;
         }
     }

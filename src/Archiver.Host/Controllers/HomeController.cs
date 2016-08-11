@@ -17,5 +17,15 @@ namespace Archiver.Host.Controllers
         {
             return View("Index");
         }
+
+        public JsonResult Init()
+        {
+            return new JsonResult(target.Send<CategoryListReqMsg>());
+        }
+
+        public JsonResult GetCategory(string name)
+        {
+            return null;
+        }
     }
 }

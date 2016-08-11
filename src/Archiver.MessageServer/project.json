@@ -1,7 +1,10 @@
 ﻿{
   "version": "1.0.0-*",
 
-  "buildOptions": { "emitEntryPoint": true },
+  "buildOptions": { 
+    "emitEntryPoint": true,
+    "copyToOutput": "cat.json"
+  },
 
   "dependencies": {
     "Microsoft.NETCore.App": "1.0.0",
