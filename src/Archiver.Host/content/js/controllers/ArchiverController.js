@@ -14,7 +14,7 @@ ArchiverController.controller('FolderController', ['$scope', '$http',
                 var folderItems = [];
                 var fileItems = [];
                 for (var i = 0; i < items.length; i++) {
-                    if (items[i].File === "True") {
+                    if (items[i].IsFolder === false) {
                         fileItems.push(items[i]);
                     }
                     else {

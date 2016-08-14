@@ -25,7 +25,12 @@ namespace Archiver.Host.Controllers
 
         public JsonResult GetCategory(string name)
         {
-            return null;
+            return new JsonResult(target.Send(new CategoryReqMsg { Name = name }));
+        }
+
+        public JsonResult GetItem(long id)
+        {
+            return new JsonResult("{}");
         }
     }
 }

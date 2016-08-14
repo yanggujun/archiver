@@ -34,14 +34,17 @@ namespace Archiver.MessageServer
                     var items = new List<Item>();
                     foreach (var f in dir.GetFiles())
                     {
-                        var item = new Item
+                        if ((f.Attributes & FileAttributes.Hidden) == 0 && (f.Attributes & FileAttributes.System) == 0)
                         {
-                            Id = sequence.Next(),
-                            Name = f.Name,
-                            Path = f.FullName,
-                            IsFolder = false
-                        };
-                        items.Add(item);
+                            var item = new Item
+                            {
+                                Id = sequence.Next(),
+                                Name = f.Name,
+                                Path = f.FullName,
+                                IsFolder = false
+                            };
+                            items.Add(item);
+                        }
                     }
 
                     foreach (var d in dir.GetDirectories())

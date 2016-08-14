@@ -3,6 +3,7 @@ using System.Reflection;
 using Archiver.Common;
 using Commons.Collections.Map;
 using Commons.Collections.Sequence;
+using Commons.Json;
 using Commons.Messaging;
 using Commons.Messaging.Cache;
 using Microsoft.AspNetCore.Http;
@@ -13,6 +14,7 @@ namespace Archiver.MessageServer
     {
         public static IMessageController<HttpContext> Build()
         {
+            JsonMapper.UseLowerCaseBool().For<Item>().Not.MapProperty(x => x.Path);
             var cacheFactory = new CacheFactory();
             var cacheManager = new CacheManager(cacheFactory);
             var catCache = cacheManager.NewCache<string, string>("category");
