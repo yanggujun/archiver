@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using Archiver.Common;
 using Commons.Collections.Map;
@@ -20,6 +21,7 @@ namespace Archiver.MessageServer
             var catCache = cacheManager.NewCache<string, string>("category");
             var contextCache = cacheManager.NewCache<long, HttpContext>("context");
             var typeCache = cacheManager.NewCache<string, Type>("type");
+            var catItemCache = cacheManager.NewCache<string, List<Item>>("item");
 
             var contextSeq = new AtomicSequence();
 
@@ -28,7 +30,7 @@ namespace Archiver.MessageServer
             var router = new TypedMessageRouter();
 
             router.AddTarget(typeof(CategoryListReqMsg), new SimpleDispatcher(new CategoryListWorker(catCache)));
-            router.AddTarget(typeof(CategoryReqMsg), new SimpleDispatcher(new CategoryWorker(catCache, categorySeq)));
+            router.AddTarget(typeof(CategoryReqMsg), new SimpleDispatcher(new CategoryWorker(catCache, catItemCache, categorySeq)));
 
             var outbound = new OutboundController(contextCache);
             var assemblyCache = cacheManager.NewCache<string, Assembly>("asssembly");

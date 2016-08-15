@@ -14,6 +14,7 @@ namespace Archiver.MessageServer
     public class CategoryListWorker : IWorker<CategoryListReqMsg, string>
     {
         private readonly ICache<string, string> catCache;
+        private string categoryJson;
         public CategoryListWorker(ICache<string, string> catCache)
         {
             this.catCache = catCache;
@@ -21,23 +22,28 @@ namespace Archiver.MessageServer
 
         public string Do(CategoryListReqMsg message)
         {
-            var cateFile = Path.Combine(AppContext.BaseDirectory, "cat.json");
-            string catJson;
-            using (var fs = new FileStream(cateFile, FileMode.Open))
+            if (catCache.IsEmpty)
             {
-                using (var reader = new StreamReader(fs))
+                string catJson;
+                var cateFile = Path.Combine(AppContext.BaseDirectory, "cat.json");
+                using (var fs = new FileStream(cateFile, FileMode.Open))
                 {
-                    catJson = reader.ReadToEnd();
+                    using (var reader = new StreamReader(fs))
+                    {
+                        catJson = reader.ReadToEnd();
+                    }
                 }
+
+                var cats = JsonMapper.To<HashedMap<string, string>>(catJson);
+                foreach (var kvp in cats)
+                {
+                    catCache.Add(kvp.Key, kvp.Value);
+                }
+
+                categoryJson = JsonMapper.ToJson(cats.Keys);
             }
 
-            var cats = JsonMapper.To<HashedMap<string, string>>(catJson);
-            foreach(var kvp in cats)
-            {
-                catCache.Add(kvp.Key, kvp.Value);
-            }
-
-            return JsonMapper.ToJson(cats.Keys);
+            return categoryJson;
         }
     }
 }
