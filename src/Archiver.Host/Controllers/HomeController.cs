@@ -28,9 +28,16 @@ namespace Archiver.Host.Controllers
             return new JsonResult(target.Send(new CategoryReqMsg { Name = name }));
         }
 
-        public JsonResult GetItem(long id)
+        public JsonResult GetFolder(long id)
         {
-            return new JsonResult("{}");
+            var json = target.Send(new ItemReqMsg { Id = id });
+            return new JsonResult(json);
+        }
+
+        public FileResult GetFile(long id)
+        {
+            var json = target.Send(new ItemReqMsg { Id = id });
+            return null;
         }
     }
 }

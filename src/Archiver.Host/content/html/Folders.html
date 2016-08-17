@@ -23,12 +23,12 @@
         <div class="collapse navbar-collapse">
             <ul class="nav nav-tabs nav-tabs-justified">
                 <li role="presentation" ng-repeat="f in categories">
-                    <button class="btn btn-link" ng-click="getFolder(f)">{{f}}</button>
+                    <button class="btn btn-link" ng-click="getCategory(f)">{{f}}</button>
                 </li>
             </ul>
         </div><!--/.nav-collapse -->
         <div class="list-group">
-            <a class="list-group-item" ng-repeat="folder in folderItems" href="#/item/{{folder.Id}}">
+            <a class="list-group-item" ng-repeat="folder in folderItems" href ng-click="getFolder(folder.Id)">
                 <span class="glyphicon glyphicon-folder-close"></span>        {{folder.Name}}
             </a>
             <a class="list-group-item" ng-repeat="file in fileItems" href="#/item/{{file.Id}}">

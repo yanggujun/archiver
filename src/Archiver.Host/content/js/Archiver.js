@@ -14,12 +14,12 @@ archiver.config(['$routeProvider',
                 templateUrl: 'html/Folders.html',
                 controller: 'FolderController'
             })
-            .when('/folder/:name', {
+            .when('/folder/:id', {
                 templateUrl: 'html/ItemList.html',
                 controller: 'ItemController'
             })
             .when('/item/:id', {
-                templateUrl: 'html/SubItemList.html',
+                templateUrl: 'html/ItemList.html',
                 controller: 'ItemListController'
             })
             .otherwise({

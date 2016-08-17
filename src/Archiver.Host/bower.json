@@ -13,12 +13,12 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "2.2.3",
     "bootstrap": "3.3.6",
     "angular": "1.5.5",
-    "angular-route": "1.5.5"
+    "angular-route": "1.5.5",
+    "jquery": "2.2.3"
   },
   "resolutions": {
-    "angular": "1.5.8"
+    "angular": "1.5.9-build.4970+sha.1660ddd"
   }
 }
