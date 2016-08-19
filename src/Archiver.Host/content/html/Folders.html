@@ -29,10 +29,11 @@
         </div><!--/.nav-collapse -->
         <div class="list-group">
             <a class="list-group-item" ng-repeat="folder in folderItems" href ng-click="getFolder(folder.Id)">
-                <span class="glyphicon glyphicon-folder-close"></span>        {{folder.Name}}
+                <span class="glyphicon glyphicon-folder-close"></span>
+                <span> {{folder.Name}} </span>
             </a>
-            <a class="list-group-item" ng-repeat="file in fileItems" href="#/item/{{file.Id}}">
-                <span class="glyphicon glyphicon-file"></span>        {{file.Name}}
+            <a class="list-group-item" ng-repeat="file in fileItems" href ng-click="downloadFile(file.Id)">
+                <span class="glyphicon glyphicon-file"></span><span>{{file.Name}}</span>
             </a>
         </div>
     </div>

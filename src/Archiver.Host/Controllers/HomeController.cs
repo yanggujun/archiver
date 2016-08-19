@@ -1,5 +1,8 @@
 ﻿using System;
+using System.IO;
 using Archiver.Common;
+using Commons.Collections.Map;
+using Commons.Json;
 using Commons.Messaging;
 using Microsoft.AspNetCore.Mvc;
 
@@ -37,7 +40,12 @@ namespace Archiver.Host.Controllers
         public FileResult GetFile(long id)
         {
             var json = target.Send(new ItemReqMsg { Id = id });
-            return null;
+            var dict = JsonMapper.To<HashedMap<string, string>>(json);
+            var path = dict["path"];
+            var name = dict["name"];
+
+            var fs = new FileStream(path, FileMode.Open);
+            return File(fs, "application/any", name);
         }
     }
 }

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Archiver.Common;
+using Commons.Collections.Map;
 using Commons.Collections.Sequence;
 using Commons.Json;
 using Commons.Messaging;
@@ -40,6 +41,13 @@ namespace Archiver.MessageServer
                         }
                     }
                     json = JsonMapper.ToJson(item.SubItems);
+                }
+                else
+                {
+                    var map = new HashedMap<string, string>();
+                    map.Add("path", item.Path);
+                    map.Add("name", item.Name);
+                    json = JsonMapper.ToJson(map);
                 }
             }
 

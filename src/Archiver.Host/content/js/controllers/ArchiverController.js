@@ -22,6 +22,11 @@ ArchiverController.controller('FolderController', ['$scope', '$http',
             });
         };
 
+        $scope.downloadFile = function (id)
+        {
+            window.location = 'Home/GetFile?id=' + id;
+        }
+
         function setItems(data) {
             var items = $.parseJSON(data);
             $scope.fileItems.length = 0;
