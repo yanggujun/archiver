@@ -18,31 +18,27 @@ namespace Archiver.MessageServer
         public CategoryListWorker(ICache<string, string> catCache)
         {
             this.catCache = catCache;
+            string catJson;
+            var cateFile = Path.Combine(AppContext.BaseDirectory, "cat.json");
+            using (var fs = new FileStream(cateFile, FileMode.Open))
+            {
+                using (var reader = new StreamReader(fs))
+                {
+                    catJson = reader.ReadToEnd();
+                }
+            }
+
+            var cats = JsonMapper.To<HashedMap<string, string>>(catJson);
+            foreach (var kvp in cats)
+            {
+                this.catCache.Add(kvp.Key, kvp.Value);
+            }
+
+            categoryJson = JsonMapper.ToJson(cats.Keys);
         }
 
         public string Do(CategoryListReqMsg message)
         {
-            if (catCache.IsEmpty)
-            {
-                string catJson;
-                var cateFile = Path.Combine(AppContext.BaseDirectory, "cat.json");
-                using (var fs = new FileStream(cateFile, FileMode.Open))
-                {
-                    using (var reader = new StreamReader(fs))
-                    {
-                        catJson = reader.ReadToEnd();
-                    }
-                }
-
-                var cats = JsonMapper.To<HashedMap<string, string>>(catJson);
-                foreach (var kvp in cats)
-                {
-                    catCache.Add(kvp.Key, kvp.Value);
-                }
-
-                categoryJson = JsonMapper.ToJson(cats.Keys);
-            }
-
             return categoryJson;
         }
     }
